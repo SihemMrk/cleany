@@ -5,16 +5,21 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: ""
+      value: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
     event.preventDefault();
-    const name = {
-      name: this.state.name
+    this.setState = {
+      value: this.target.value
     };
-    axios.post("/words", { name }).then(res => {
+    axios.post("/words", { value }).then(res => {
       console.log(res);
       console.log(res.data);
     });
@@ -26,7 +31,11 @@ export default class App extends React.Component {
         <h1>Chercher un mot</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            <input type="text" name="name" />
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
           </label>
           <input type="submit" value="Rechercher" />
         </form>
