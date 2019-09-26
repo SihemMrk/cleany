@@ -19,9 +19,12 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.post("/words", (req, res) => {
   const seed = path.join(__dirname, "./seed.json");
   const words = JSON.parse(fs.readFileSync(seed, "utf8"));
-  res.send(JSON.stringify(words));
 
-  console.log(req.body, "body");
+  if (words.indexOf(req.body.name) == -1) {
+    res.status(200).send("Non trouvé");
+  } else {
+    res.status(200).send("Trouvé");
+  }
 });
 
 app.get("*", (req, res) => {

@@ -1,0 +1,46 @@
+* {
+  font-family: Raleway, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  background-color: #c4f0c5;
+  width: 40%;
+  height: 150px;
+  margin: 130px auto;
+  border-radius: 20px 0;
+}
+
+h1,
+form,
+h2 {
+  padding-top: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 20px;
+  color: #64676d;
+}
+
+h2 {
+  font-size: 15px;
+  color: #64676d;
+}
+.text {
+  width: 140px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.submit {
+  width: 80px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  border: 3px solid #b0bec5;
+}

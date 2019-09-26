@@ -5,40 +5,42 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: ""
+      input: "",
+      output: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ name: event.target.name.value });
+    this.setState({ input: event.target.value });
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.setState = {
-      name: this.target.name.value
-    };
-    axios.post("/words", { name }).then(res => {
-      console.log(res);
+
+    const input = this.state.input;
+
+    axios.post("/words", { input }).then(res => {
       console.log(res.data);
+      this.setState({ output: res.data });
     });
   }
 
   render() {
     return (
-      <div>
+      <div id="container">
         <h1>Chercher un mot</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            <input
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Rechercher" />
+          <input
+            className="text"
+            type="text"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+
+          <input className="submit" type="submit" value="Rechercher" />
         </form>
+        <h2>{this.state.output}</h2>
       </div>
     );
   }
