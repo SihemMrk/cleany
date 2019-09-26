@@ -5,21 +5,21 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: ""
+      name: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ name: event.target.name.value });
   }
   handleSubmit(event) {
     event.preventDefault();
     this.setState = {
-      value: this.target.value
+      name: this.target.name.value
     };
-    axios.post("/words", { value }).then(res => {
+    axios.post("/words", { name }).then(res => {
       console.log(res);
       console.log(res.data);
     });
@@ -33,7 +33,7 @@ export default class App extends React.Component {
           <label>
             <input
               type="text"
-              value={this.state.value}
+              value={this.state.name}
               onChange={this.handleChange}
             />
           </label>
