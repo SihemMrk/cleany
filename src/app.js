@@ -4,23 +4,22 @@ const axios = require("axios");
 export default class App extends React.Component {
   constructor() {
     super();
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       name: ""
     };
-    handleSubmit = event => {
-      event.preventDefault();
-
-      const name = {
-        name: this.state.name
-      };
-
-      axios.post("/words", { name }).then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
-    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleSubmit(event) {
+    event.preventDefault();
+    const name = {
+      name: this.state.name
+    };
+    axios.post("/words", { name }).then(res => {
+      console.log(res);
+      console.log(res.data);
+    });
+  }
+
   render() {
     return (
       <div>
