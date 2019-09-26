@@ -17,11 +17,8 @@ export default class App extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-
     const input = this.state.input;
-
     axios.post("/words", { input }).then(res => {
-      console.log(res.data);
       this.setState({ output: res.data });
     });
   }

@@ -20,10 +20,10 @@ app.post("/words", (req, res) => {
   const seed = path.join(__dirname, "./seed.json");
   const words = JSON.parse(fs.readFileSync(seed, "utf8"));
 
-  if (words.indexOf(req.body.name) == -1) {
-    res.status(200).send("Non trouvé");
-  } else {
+  if (words.indexOf(req.body.input.toLowerCase()) != -1) {
     res.status(200).send("Trouvé");
+  } else {
+    res.status(200).send("Pas trouvé");
   }
 });
 
