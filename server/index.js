@@ -20,8 +20,8 @@ app.post("/words", (req, res) => {
   const seed = path.join(__dirname, "./seed.json");
   const words = JSON.parse(fs.readFileSync(seed, "utf8"));
   res.send(JSON.stringify(words));
-  var mot = req.body;
-  console.log(mot);
+
+  console.log(req.body, "body");
 });
 
 app.get("*", (req, res) => {
