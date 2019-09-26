@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const volleyball = require("volleyball");
 const app = express();
-// const fs = require("fs");
+const fs = require("fs");
 
 // logging middleware
 app.use(volleyball);
@@ -15,6 +15,14 @@ app.use(express.urlencoded({ extended: true }));
 
 // static middleware
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.post("/words", (req, res) => {
+  const seed = path.join(__dirname, "./seed.json");
+  const words = JSON.parse(fs.readFileSync(seed, "utf8"));
+  res.send(JSON.stringify(words));
+  var mot = req.body;
+  console.log(mot);
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));

@@ -1,12 +1,37 @@
 import React from "react";
-import Page from "./components/page.js";
+const axios = require("axios");
 
-const App = () => {
-  return (
-    <div>
-      <Page />
-    </div>
-  );
-};
+export default class App extends React.Component {
+  constructor() {
+    super();
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      name: ""
+    };
+    handleSubmit = event => {
+      event.preventDefault();
 
-export default App;
+      const name = {
+        name: this.state.name
+      };
+
+      axios.post("/words", { name }).then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1>Chercher un mot</h1>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <input type="text" name="name" />
+          </label>
+          <input type="submit" value="Rechercher" />
+        </form>
+      </div>
+    );
+  }
+}
